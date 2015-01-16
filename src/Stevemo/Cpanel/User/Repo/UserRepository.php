@@ -155,7 +155,7 @@ class UserRepository implements CpanelUserInterface {
      */
     public function findAll()
     {
-        return $this->sentry->findAllUsers();
+        return $this->sentry->getUserProvider()->createModel();
     }
 
     /**
