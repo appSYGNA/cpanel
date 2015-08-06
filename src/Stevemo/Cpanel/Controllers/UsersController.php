@@ -59,8 +59,10 @@ class UsersController extends BaseController {
     public function index()
     {
         $users = $this->users->findAll()->paginate();
+        $partners = $this->partners->findAll();
         return View::make(Config::get('cpanel::views.users_index'))
-            ->with('users', $users);
+            ->with('users', $users)
+            ->with('partners', $partners);
     }
 
     /**
