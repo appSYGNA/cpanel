@@ -1,10 +1,11 @@
 <?php namespace Stevemo\Cpanel\Controllers;
 
 use View, Config, Redirect, Lang, Input;
-use Stevemo\Cpanel\User\Repo\CpanelUserInterface;
-use Stevemo\Cpanel\User\Form\UserFormInterface;
-use Stevemo\Cpanel\Permission\Repo\PermissionInterface;
 use Stevemo\Cpanel\Group\Repo\CpanelGroupInterface;
+use Stevemo\Cpanel\Partner\Repo\Partner;
+use Stevemo\Cpanel\Permission\Repo\PermissionInterface;
+use Stevemo\Cpanel\User\Form\UserFormInterface;
+use Stevemo\Cpanel\User\Repo\CpanelUserInterface;
 use Stevemo\Cpanel\User\Repo\UserNotFoundException;
 
 class UsersController extends BaseController {
@@ -59,7 +60,7 @@ class UsersController extends BaseController {
     public function index()
     {
         $users = $this->users->findAll()->paginate();
-        $partners = $this->partners->findAll();
+        $partners = Partner::all();
         return View::make(Config::get('cpanel::views.users_index'))
             ->with('users', $users)
             ->with('partners', $partners);
